@@ -10,6 +10,7 @@ import simon.dao.CampusDao;
 import simon.dao.DaoFactory;
 import simon.dao.InterventionDao;
 import simon.dao.SpeakerDao;
+import simon.dao.MarkDao;
 
 public class InterDaoFactory extends DaoFactory {
     
@@ -18,6 +19,7 @@ public class InterDaoFactory extends DaoFactory {
 	private InterCampusDao campusDao;
 	private InterInterventionDao interventionDao;
         private InterSpeakerDao speakerDao;
+        private InterMarkDao markDao;
 
 	@Override
 	public CampusDao getCampusDao() {
@@ -41,6 +43,14 @@ public class InterDaoFactory extends DaoFactory {
 			speakerDao = new InterSpeakerDao(emf);
 		}
 		return (SpeakerDao) speakerDao;
+	}
+        
+        @Override
+	public MarkDao getMarkDao() {
+		if(markDao == null) {
+			markDao = new InterMarkDao(emf);
+		}
+		return (MarkDao) markDao;
 	}
 
     

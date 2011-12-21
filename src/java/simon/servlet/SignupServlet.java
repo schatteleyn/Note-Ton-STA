@@ -5,7 +5,6 @@
 package simon.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,7 +40,8 @@ public class SignupServlet extends HttpServlet {
         }
         
         else {        
-            Speaker speaker = new Speaker(nom, prenom, email, password);
+            String encryptedPassword = DaoFactory.getDaoFactory().getSpeakerDao().encryptPassword(password);
+            Speaker speaker = new Speaker(nom, prenom, email, encryptedPassword);
             speaker = (Speaker) DaoFactory.getDaoFactory().getSpeakerDao().addSpeaker(speaker);
         }
    

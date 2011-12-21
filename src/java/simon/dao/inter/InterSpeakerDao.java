@@ -21,7 +21,7 @@ public class InterSpeakerDao implements SpeakerDao {
         this.emf = emf;
     }
     
-    private String encryptPassword(String password) {
+    public String encryptPassword(String password) {
 		String result = null;
 		try {
 			result = new String(MessageDigest.getInstance("SHA-1").digest(password.getBytes()));
@@ -50,7 +50,7 @@ public class InterSpeakerDao implements SpeakerDao {
     }
     
     @Override
-    public Speaker authenticate(String email, String password) {
+    public Speaker login(String email, String password) {
             Speaker result = null;
 
             EntityManager em = emf.createEntityManager();

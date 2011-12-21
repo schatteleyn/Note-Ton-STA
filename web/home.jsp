@@ -1,5 +1,4 @@
 <%@page import="simon.entity.Campus"%>
-<%@page import="simon.entity.Campus"%>
 <%@page import="java.util.List"%>
 <jsp:include page="header.jps"/>
     

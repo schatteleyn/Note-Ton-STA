@@ -8,7 +8,8 @@ import simon.entity.Speaker;
 
 public interface SpeakerDao {
     
+    String encryptPassword(String password);
     Speaker addSpeaker(Speaker speaker);
-    Speaker authenticate(String email, String password);
+    Speaker login(String email, String password);
     Speaker findSpeakerByEmail(String email);
 }
