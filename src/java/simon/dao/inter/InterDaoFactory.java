@@ -9,6 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import simon.dao.CampusDao;
 import simon.dao.DaoFactory;
 import simon.dao.InterventionDao;
+import simon.dao.SpeakerDao;
 
 public class InterDaoFactory extends DaoFactory {
     
@@ -16,6 +17,7 @@ public class InterDaoFactory extends DaoFactory {
 
 	private InterCampusDao campusDao;
 	private InterInterventionDao interventionDao;
+        private InterSpeakerDao speakerDao;
 
 	@Override
 	public CampusDao getCampusDao() {
@@ -31,6 +33,14 @@ public class InterDaoFactory extends DaoFactory {
 			interventionDao = new InterInterventionDao(emf);
 		}
 		return (InterventionDao) interventionDao;
+	}
+        
+        @Override
+	public SpeakerDao getSpeakerDao() {
+		if(speakerDao == null) {
+			speakerDao = new InterSpeakerDao(emf);
+		}
+		return (SpeakerDao) speakerDao;
 	}
 
     

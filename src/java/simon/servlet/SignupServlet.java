@@ -11,6 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import simon.dao.DaoFactory;
+import simon.entity.Speaker;
 
 @WebServlet(name = "SignupServlet", urlPatterns = {"/signup"})
 public class SignupServlet extends HttpServlet {
@@ -38,16 +40,10 @@ public class SignupServlet extends HttpServlet {
             getServletContext().getRequestDispatcher("signup.jsp").forward(req, resp);
         }
         
-        else {
-        req.setAttribute("nom", nom);
-        req.setAttribute("prenom", prenom);
-        req.setAttribute("email", email);
-        req.setAttribute("password", email);
-        req.setAttribute("confirmation", email);
+        else {        
+            Speaker speaker = new Speaker(nom, prenom, email, password);
+            speaker = (Speaker) DaoFactory.getDaoFactory().getSpeakerDao().addSpeaker(speaker);
         }
    
     }
-
-    
-    
 }

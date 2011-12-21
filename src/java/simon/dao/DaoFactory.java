@@ -12,4 +12,5 @@ public abstract class DaoFactory {
     }
     public abstract CampusDao getCampusDao();
     public abstract InterventionDao getInterventionDao();
+    public abstract SpeakerDao getSpeakerDao();
 }

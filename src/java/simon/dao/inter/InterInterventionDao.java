@@ -10,10 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import simon.dao.InterventionDao;
 import simon.entity.Intervention;
-/**
- *
- * @author patrice
- */
+
 public class InterInterventionDao implements InterventionDao {
     private EntityManagerFactory emf;
     

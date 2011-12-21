@@ -11,7 +11,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaQuery;
 import simon.dao.CampusDao;
 import simon.entity.Campus;
-import simon.entity.Intervention;
 
 public class InterCampusDao implements CampusDao {
     
