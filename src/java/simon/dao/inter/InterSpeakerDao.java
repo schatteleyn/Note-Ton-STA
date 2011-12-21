@@ -4,8 +4,12 @@
  */
 package simon.dao.inter;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import simon.dao.SpeakerDao;
 import simon.entity.Speaker;
 
@@ -16,6 +20,16 @@ public class InterSpeakerDao implements SpeakerDao {
     public InterSpeakerDao(EntityManagerFactory emf) {
         this.emf = emf;
     }
+    
+    private String encryptPassword(String password) {
+		String result = null;
+		try {
+			result = new String(MessageDigest.getInstance("SHA-1").digest(password.getBytes()));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
     
     @Override
     public Speaker addSpeaker(Speaker speaker) {
@@ -32,6 +46,44 @@ public class InterSpeakerDao implements SpeakerDao {
                 }
                 em.close();
         }
+        return result;
+    }
+    
+    @Override
+    public Speaker authenticate(String email, String password) {
+            Speaker result = null;
+
+            EntityManager em = emf.createEntityManager();
+            try {
+                Speaker speaker = findSpeakerByEmail(email);
+                //if(speaker != null && speaker.getEncryptedPassword().equals(encryptPassword(password))) {
+                if(speaker != null && speaker.getPassword().equals(password)) {
+                        result = speaker;
+                }
+            } catch (NoResultException e) { 
+
+            } finally {
+                    em.close();
+            }
+
+            return result;
+    }
+    
+    @Override
+    public Speaker findSpeakerByEmail(String email) {
+        Speaker result;
+
+        EntityManager em = emf.createEntityManager();
+        Object speaker = null;
+        try {
+                Query query = em.createQuery("SELECT s FROM Speaker s WHERE s.speaker = :speaker");
+                result = (Speaker) query.setParameter("speaker", speaker).getSingleResult();
+        } catch (NoResultException e) { 
+                result = null;
+        } finally {
+                em.close();
+        }
+
         return result;
     }
 
