@@ -16,8 +16,26 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginServlet extends HttpServlet {
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        getServletContext().getRequestDispatcher("home.jsp").forward(req, resp);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        String email = (String) req.getParameter("email");
+        String password = (String) req.getParameter("password");
+        
+        if (email.isEmpty() || password.isEmpty()) {
+            req.setAttribute("erreur", "Vous devez remplir les deux champs.");
+            getServletContext().getRequestDispatcher("login.jsp").forward(req, resp);
+        }
+ 
+            
+        else {
+            req.setAttribute("email", email);
+            req.setAttribute("password", password);
+            getServletContext().getRequestDispatcher("***.jsp").forward(req, resp);
+        }
     }
 
     

@@ -2,9 +2,9 @@
 
 <body>
 	<form method="POST" action="login">
-		<input type="text" name="Email" />
-		<input type="text" name="Password" />
-
+		<input type="text" name="email" />
+		<input type="text" name="password" />
+                <input type="submit" name="Valider" />
 	</form>
 </body>
 </html>
