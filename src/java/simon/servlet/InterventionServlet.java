@@ -5,15 +5,14 @@
 package simon.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import simon.dao.InterventionDao;
 import simon.dao.DaoFactory;
 import simon.entity.Intervention;
+import simon.entity.Speaker;
 
 @WebServlet(name = "InterventionServlet", urlPatterns = {"/intervention/new"})
 public class InterventionServlet extends HttpServlet {
@@ -30,7 +29,7 @@ public class InterventionServlet extends HttpServlet {
         String from = (String) req.getParameter("from");
         String to = (String) req.getParameter("to");
         String description = (String) req.getParameter("description");
-        String speaker = (string) req.getSession().getAttribute("email");
+        Speaker speaker = (Speaker) req.getSession().getAttribute("email");
         
         if (sujet.isEmpty() || campus.isEmpty() || from.isEmpty() || to.isEmpty() || description.isEmpty()) {
             req.setAttribute("erreur", "Vous devez remplir tous les champs.");

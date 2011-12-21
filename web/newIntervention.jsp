@@ -14,10 +14,17 @@
                             
                             <% } %>
 			</select>
-		De: <input type="text" name="from" />
-		A: <input type="text" name="to" />
+		De: <input type="text" name="from" id="from"/>
+		A: <input type="text" name="to" id="to"/>
                 Description: <textarea name="confirmation" ></textarea>
 		<input type="submit" name="Valider" />
 	</form>
+        <!-- Not sure about this part -->                
+        <script>
+            $(document).ready(function() {
+              $("#from").click().datepicker();
+              $("#to").click().datepicker();
+            });
+        </script>
 </body>
 </html>
