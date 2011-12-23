@@ -3,10 +3,12 @@
 <jsp:include page="header.jps"/>
 
 <body>
-    <% List<Campus> listCampus = (List<Campus>) request.getAttribute("list_campus"); %>
+    <% List<Campus> listCampus = (List<Campus>) request.getAttribute("list_campus"); 
+       Intervention intervention = 
+    %>
     
 	<form method="POST" action="intervention">
-		Sujet: <input type="text" name="sujet" />
+		Sujet: <input type="text" name="sujet" value="<%= intervention.getValue(); %>"/>
 		Campus: <select name="campus">
                             <% for(Campus campus : listCampus) {%>
                             
@@ -19,6 +21,7 @@
                 Description: <textarea name="confirmation" ></textarea>
 		<input type="submit" name="Valider" />
 	</form>
+                       
         <script>
             $(document).ready(function() {
               $("#from").click(function(){

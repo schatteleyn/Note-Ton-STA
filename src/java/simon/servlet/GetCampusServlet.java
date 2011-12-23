@@ -36,6 +36,7 @@ public class GetCampusServlet extends HttpServlet {
         
         req.setAttribute("list_campus", listCampus);
         req.getRequestDispatcher("/home.jsp").forward(req, resp);
+        req.getRequestDispatcher("/newIntervention.jsp"); // Not sure about this line, gotta check
     }
 
 }
