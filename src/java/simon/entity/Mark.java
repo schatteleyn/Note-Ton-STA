@@ -12,10 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-/**
- *
- * @author patrice
- */
 @Entity
 public class Mark implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -24,16 +20,87 @@ public class Mark implements Serializable {
     private Long id;
     private Integer idBooster;
     private String comments;
-    private Integer mark11;
-    private Integer mark12;
-    private Integer mark13;
-    private Integer mark21;
-    private Integer mark22;
-    private Integer mark23;
+    private Integer mark1;
+    private Integer mark2;
+    private Integer mark3;
+    private Integer mark4;
+    private Integer mark5;
+    private Integer mark6;
     
     @ManyToOne
     @JoinColumn(name="intervention_fk")
     private Intervention intervention;
+    
+    public Mark() {
+    }
+    
+    public Mark(Integer idBooster, String comments, Integer mark1, Integer mark2, Integer mark3, Integer mark4, Integer mark5, Integer mark6, Intervention intervention){
+        this.idBooster = idBooster;
+        this.comments = comments;
+        this.mark1 = mark1;
+        this.mark2 = mark2;
+        this.mark3 = mark3;
+        this.mark4 = mark4;
+        this.mark5 = mark5;
+        this.mark6 = mark6;
+        this.intervention = intervention;
+    }
+
+    public Intervention getIntervention() {
+        return intervention;
+    }
+
+    public void setIntervention(Intervention intervention) {
+        this.intervention = intervention;
+    }
+
+    public Integer getMark1() {
+        return mark1;
+    }
+
+    public void setMark1(Integer mark1) {
+        this.mark1 = mark1;
+    }
+
+    public Integer getMark2() {
+        return mark2;
+    }
+
+    public void setMark2(Integer mark2) {
+        this.mark2 = mark2;
+    }
+
+    public Integer getMark3() {
+        return mark3;
+    }
+
+    public void setMark3(Integer mark3) {
+        this.mark3 = mark3;
+    }
+
+    public Integer getMark4() {
+        return mark4;
+    }
+
+    public void setMark4(Integer mark4) {
+        this.mark4 = mark4;
+    }
+
+    public Integer getMark5() {
+        return mark5;
+    }
+
+    public void setMark5(Integer mark5) {
+        this.mark5 = mark5;
+    }
+
+    public Integer getMark6() {
+        return mark6;
+    }
+
+    public void setMark6(Integer mark6) {
+        this.mark6 = mark6;
+    }
 
     public String getComments() {
         return comments;
@@ -51,54 +118,7 @@ public class Mark implements Serializable {
         this.idBooster = idBooster;
     }
 
-    public Integer getMark11() {
-        return mark11;
-    }
-
-    public void setMark11(Integer mark11) {
-        this.mark11 = mark11;
-    }
-
-    public Integer getMark12() {
-        return mark12;
-    }
-
-    public void setMark12(Integer mark12) {
-        this.mark12 = mark12;
-    }
-
-    public Integer getMark13() {
-        return mark13;
-    }
-
-    public void setMark13(Integer mark13) {
-        this.mark13 = mark13;
-    }
-
-    public Integer getMark21() {
-        return mark21;
-    }
-
-    public void setMark21(Integer mark21) {
-        this.mark21 = mark21;
-    }
-
-    public Integer getMark22() {
-        return mark22;
-    }
-
-    public void setMark22(Integer mark22) {
-        this.mark22 = mark22;
-    }
-
-    public Integer getMark23() {
-        return mark23;
-    }
-
-    public void setMark23(Integer mark23) {
-        this.mark23 = mark23;
-    }
-    
+   
 
     public Long getId() {
         return id;

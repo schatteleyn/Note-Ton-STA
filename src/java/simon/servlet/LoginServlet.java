@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import simon.dao.DaoFactory;
+import simon.entity.Speaker;
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
@@ -33,7 +35,8 @@ public class LoginServlet extends HttpServlet {
         else {
             req.setAttribute("email", email);
             req.setAttribute("password", password);
-            getServletContext().getRequestDispatcher("***.jsp").forward(req, resp);
+            speakerLogin = (Speaker) DaoFactory.getDaoFactory().getSpeakerDao().login(email, password);
+            getServletContext().getRequestDispatcher("intervention.jsp").forward(req, resp);
         }
     }
 

@@ -5,8 +5,10 @@
 package simon.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,6 +27,7 @@ public class Intervention implements Serializable {
     private String description;
     private Date beginning;
     private Date ending;
+    private String status;
     
     @OneToMany(mappedBy="Intervention")
     private Collection<Mark>Mark;
@@ -115,4 +118,47 @@ public class Intervention implements Serializable {
         return "simon.entity.Intervention[ id=" + id + " ]";
     }
     
+    public String getStatus() {
+        String status;
+        Date date = new Date(); 
+        
+      if(date.before(beginning)) {
+          status = "To come";
+      }
+      else if (date.after(ending)) {
+          status = "Done";
+      }
+      else {
+          status = "In progress";
+      }
+     return status;
+    }
+    
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    public Collection<simon.entity.Mark> getMark() {
+        return Mark;
+    }
+
+    public void setMark(Collection<simon.entity.Mark> Mark) {
+        this.Mark = Mark;
+    }
+
+    public Campus getCampus() {
+        return campus;
+    }
+
+    public void setCampus(Campus campus) {
+        this.campus = campus;
+    }
+
+    public Speaker getSpeaker() {
+        return speaker;
+    }
+
+    public void setSpeaker(Speaker speaker) {
+        this.speaker = speaker;
+    }
 }
