@@ -28,14 +28,14 @@ public class MarkServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String idBooster = (String) req.getParameter("idBooster"); //Should be Integer
+        Integer idBooster = Integer.valueOf(req.getParameter("idBooster"));
         String comments = (String) req.getParameter("comments");
-        String mark1 = (String) req.getParameter("mark1");  //Should be Integer
-        String mark2 = (String) req.getParameter("mark2");  //Should be Integer
-        String mark3 = (String) req.getParameter("mark3");  //Should be Integer
-        String mark4 = (String) req.getParameter("mark4");  //Should be Integer
-        String mark5 = (String) req.getParameter("mark5");  //Should be Integer
-        String mark6 = (String) req.getParameter("mark6");  //Should be Integer
+        Integer mark1 = Integer.valueOf(req.getParameter("mark1"));  
+        Integer mark2 = Integer.valueOf(req.getParameter("mark2"));  
+        Integer mark3 = Integer.valueOf(req.getParameter("mark3"));  
+        Integer mark4 = Integer.valueOf(req.getParameter("mark4"));
+        Integer mark5 = Integer.valueOf(req.getParameter("mark5"));
+        Integer mark6 = Integer.valueOf(req.getParameter("mark6"));
         String intervention = (String) req.getParameter("intervention");  //Should be Intervention
 
             req.setAttribute("idBooster", idBooster);
@@ -47,6 +47,6 @@ public class MarkServlet extends HttpServlet {
             req.setAttribute("mark5", mark5);
             req.setAttribute("mark6", mark6);
             Mark mark = new Mark(idBooster, comments, mark1, mark2, mark3, mark4, mark5, mark6, intervention);
-            mark = (Mark) DaoFactory.getDaoFactory().getMarkDao().addMark(mark);
+            Mark addMark = (Mark) DaoFactory.getDaoFactory().getMarkDao().addMark(mark);
     }
 }

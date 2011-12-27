@@ -4,12 +4,10 @@
  */
 package simon.dao.inter;
 
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaQuery;
 import simon.dao.MarkDao;
 import simon.entity.Intervention;
 import simon.entity.Mark;
@@ -25,7 +23,7 @@ public class InterMarkDao implements MarkDao {
     public Float getGlobalMark(Intervention intervention) {
             EntityManager em = emf.createEntityManager();
              try {
-                Query query = em.createQuery("SELECT AVG(mark1+mark2+mark3+mark4+mark5+mark6) FROM Mark WHERE intervention := intervention");
+                Query query = em.createQuery("SELECT (mark1+mark2+mark3+mark4+mark5+mark6)/6 FROM Mark WHERE intervention := intervention");
                 query.setParameter("intervention", intervention);
                 return (Float) query.getSingleResult();
             }
@@ -57,7 +55,7 @@ public class InterMarkDao implements MarkDao {
     public Float getSpeakerMark(Intervention intervention) {
             EntityManager em = emf.createEntityManager();
             try {
-                Query query = em.createQuery("SELECT AVG(mark1+mark2+mark3) FROM Mark WHERE intervention := intervention");
+                Query query = em.createQuery("SELECT (mark1+mark2+mark3)/3 FROM Mark WHERE intervention := intervention");
                 query.setParameter("intervention", intervention);
                 return (Float) query.getSingleResult();
             }
@@ -74,7 +72,7 @@ public class InterMarkDao implements MarkDao {
     public Float getSlideMark(Intervention intervention) {
             EntityManager em = emf.createEntityManager();
             try {
-                Query query = em.createQuery("SELECT AVG(mark4+mark5+mark6) FROM Mark WHERE intervention := intervention");
+                Query query = em.createQuery("SELECT (mark4+mark5+mark6)/3 FROM Mark WHERE intervention := intervention");
                 query.setParameter("intervention", intervention);
                 return (Float) query.getSingleResult();
             }

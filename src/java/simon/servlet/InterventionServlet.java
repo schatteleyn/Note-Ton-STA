@@ -33,7 +33,7 @@ public class InterventionServlet extends HttpServlet {
         
         else {        
             Intervention intervention = new Intervention(sujet, campus, from, to, description, speaker);
-            intervention = (Intervention) DaoFactory.getDaoFactory().getInterventionDao().addIntervention(intervention);
+            Intervention addIntervention = (Intervention) DaoFactory.getDaoFactory().getInterventionDao().addIntervention(intervention);
             //getServletContext().getRequestDispatcher("intervention/" + id).forward(req, resp);
         }
         

@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
         else {
             req.setAttribute("email", email);
             req.setAttribute("password", password);
-            speakerLogin = (Speaker) DaoFactory.getDaoFactory().getSpeakerDao().login(email, password);
+            Speaker speakerLogin = (Speaker) DaoFactory.getDaoFactory().getSpeakerDao().login(email, password);
             getServletContext().getRequestDispatcher("intervention.jsp").forward(req, resp);
         }
     }
