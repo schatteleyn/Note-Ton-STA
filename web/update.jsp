@@ -8,7 +8,7 @@
     %>
     
 	<form method="POST" action="intervention">
-		Sujet: <input type="text" name="sujet" value="<%= intervention.getValue(); %>"/>
+		Sujet: <input type="text" name="sujet" value="\<%= intervention.getValue(); %\>"/>
 		Campus: <select name="campus">
                             <% for(Campus campus : listCampus) {%>
                             

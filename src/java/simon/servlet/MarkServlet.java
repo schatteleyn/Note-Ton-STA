@@ -47,6 +47,6 @@ public class MarkServlet extends HttpServlet {
             req.setAttribute("mark5", mark5);
             req.setAttribute("mark6", mark6);
             Mark mark = new Mark(idBooster, comments, mark1, mark2, mark3, mark4, mark5, mark6, intervention);
-            Mark addMark = (Mark) DaoFactory.getDaoFactory().getMarkDao().addMark(mark);
+            Mark addMark = DaoFactory.getDaoFactory().getMarkDao().addMark(mark);
     }
 }

@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
 @Entity
 public class Intervention implements Serializable {
@@ -25,7 +26,9 @@ public class Intervention implements Serializable {
     private Long id;
     private String subject;
     private String description;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date beginning;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date ending;
     private String status;
     

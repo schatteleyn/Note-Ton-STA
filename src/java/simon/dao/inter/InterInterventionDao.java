@@ -108,5 +108,23 @@ public class InterInterventionDao implements InterventionDao {
 			em.close();
 		}
 	}
+        
+        @Override
+	public void removeIntervention(Long interventionId) {
+		EntityManager em = emf.createEntityManager();
+		try{
+			em.getTransaction().begin();
+			em.createQuery("DELETE FROM Intervention AS i Where i.id = :interventionId")
+				.setParameter("interventionId", interventionId)
+				.executeUpdate();
+			em.getTransaction().commit();
+		}
+		finally{
+			if(em.getTransaction().isActive()){
+				em.getTransaction().rollback();
+			}
+			em.close();
+		}
+	}
 
 }
