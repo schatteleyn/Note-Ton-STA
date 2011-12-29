@@ -14,10 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import simon.dao.DaoFactory;
 import simon.entity.Mark;
 
-/**
- *
- * @author patrice
- */
+
 @WebServlet(name = "MarkServlet", urlPatterns = {"/mark"})
 public class MarkServlet extends HttpServlet {
 

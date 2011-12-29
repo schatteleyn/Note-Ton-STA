@@ -16,7 +16,7 @@
                     <td><%= intervention.getSubject() %></td>
                     <td><%= intervention.getBeginning() %></td>
                     <td><%= intervention.getEnding() %></td>
-                    <td><%= intervention.status() %></td> <!-- à calculer dans le servlet: ending-beginning -->
+                    <td><%= intervention.status() %></td>
                 </tr>
                 <% } %>
             </table>
