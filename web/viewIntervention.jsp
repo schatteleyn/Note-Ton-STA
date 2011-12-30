@@ -1,24 +1,24 @@
-<%@page import="simon.entity.Intervention"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jps"/>
-
+<%@page import="simon.entity.Intervention"%>
 <body>
+    <div>  
+    <h2><c:out value="${ intervention.subject}" /></h2>
     
-    <h2><c:out value="${ intervention.getSubject}" /></h2>
+    <p>From <c:out value="${ intervention.beginning}" /> to <c:out value="${ intervention.ending }"/> <br />
+    Campus: <c:out value="${ intervention.campus}" /></p>
     
-    <p>From <c:out value="${ intervention.getBeginning}" /> to <c:out value="${ intervention.getEnding }"/> <br />
-    Campus: <c:out value="${ intervention.getCampus}" /></p>
-    
-    <p><c:out value="${ intervention.getDescription}" /></p>
+    <p><c:out value="${ intervention.description}" /></p>
     
     <p>
         <ul>
-            <li>Number of marks: <c:out value="${ DaoFactory.getDaoFactory().getMarkDao().getCount(intervention.id) }" /></li>
-            <li>Speaker mark: <c:out value="${ DaoFactory.getDaoFactory().getMarkDao().getSpeakerMark(intervention.id) }" /></li>
-            <li>Slides mark: <c:out value="${ DaoFactory.getDaoFactory().getMarkDao().getSlideMark(intervention.id) }" /></li>
-            <li>Global event mark: <c:out value="${ DaoFactory.getDaoFactory().getMarkDao().getGlobalMark(intervention.id) }" /></li>
+            <li>Number of marks: <c:out value="${ intervention.totalMarks }" /></li>
+            <li>Speaker mark: <c:out value="${ intervention.speakerMarks }" /></li>
+            <li>Slides mark: <c:out value="${ intervention.slideMarks }" /></li>
+            <li>Global event mark: <c:out value="${ intervention.globalMarks }" /></li>
         </ul>
     </p>
+    </div>
+    <div>
     <script type="text/javascript">
         var chart;
         $(document).ready(function() {
@@ -67,6 +67,7 @@
         });
 
     </script>
+    </div>
     <div id="chart_container"></div>
 <script type="text/javascript">
     $(function(){
@@ -162,7 +163,7 @@
                 </div>
         </div>
         
-        <a id="evaluate" href="${pageContext.servletContext.contextPath}/viewIntervention?i=${intervention.id}">Evaluate</a>
+        <a id="evaluate" href="${pageContext.servletContext.contextPath}/viewIntervention?id=${intervention.id}">Evaluate</a>
         
     </body>
 </html>

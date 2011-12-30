@@ -1,7 +1,6 @@
+<jsp:include page="header.jps"/>
 <%@page import="simon.entity.Campus"%>
 <%@page import="java.util.List"%>
-<jsp:include page="header.jps"/>
-
 <body>
     <% List<Campus> listCampus = (List<Campus>) request.getAttribute("list_campus"); %>
     

@@ -20,11 +20,11 @@ public class InterMarkDao implements MarkDao {
     }
     
     @Override
-    public Float getGlobalMark(Long id) {
+    public Float getGlobalMark(Intervention intervention) {
             EntityManager em = emf.createEntityManager();
              try {
-                Query query = em.createQuery("SELECT (mark1+mark2+mark3+mark4+mark5+mark6)/6 FROM Mark WHERE id := id");
-                query.setParameter("id", id);
+                Query query = em.createQuery("SELECT (mark1+mark2+mark3+mark4+mark5+mark6)/6 FROM Mark WHERE intervention := intervention");
+                query.setParameter("intervention", intervention);
                 return (Float) query.getSingleResult();
             }
             catch(NoResultException e) {
@@ -36,11 +36,11 @@ public class InterMarkDao implements MarkDao {
     }
     
     @Override
-    public Integer getCount(Long id) {
+    public Integer getCount(Intervention intervention) {
             EntityManager em = emf.createEntityManager();
             try {
-                Query query = em.createQuery("SELECT COUNT(id) FROM Mark WHERE id := id");
-                query.setParameter("id", id);
+                Query query = em.createQuery("SELECT COUNT(id) FROM Mark WHERE intervention := intervention");
+                query.setParameter("intervention", intervention);
                 return (Integer) query.getSingleResult();
             }
             catch(NoResultException e) {
@@ -52,11 +52,11 @@ public class InterMarkDao implements MarkDao {
     }
     
     @Override
-    public Float getSpeakerMark(Long id) {
+    public Float getSpeakerMark(Intervention intervention) {
             EntityManager em = emf.createEntityManager();
             try {
-                Query query = em.createQuery("SELECT (mark1+mark2+mark3)/3 FROM Mark WHERE id := id");
-                query.setParameter("id", id);
+                Query query = em.createQuery("SELECT (mark1+mark2+mark3)/3 FROM Mark WHERE intervention := intervention");
+                query.setParameter("intervention", intervention);
                 return (Float) query.getSingleResult();
             }
             catch(NoResultException e) {
@@ -69,11 +69,11 @@ public class InterMarkDao implements MarkDao {
     }
     
     @Override
-    public Float getSlideMark(Long id) {
+    public Float getSlideMark(Intervention intervention) {
             EntityManager em = emf.createEntityManager();
             try {
-                Query query = em.createQuery("SELECT (mark4+mark5+mark6)/3 FROM Mark WHERE id := id");
-                query.setParameter("id", id);
+                Query query = em.createQuery("SELECT (mark4+mark5+mark6)/3 FROM Mark WHERE intervention := intervention");
+                query.setParameter("intervention", intervention);
                 return (Float) query.getSingleResult();
             }
             catch(NoResultException e) {

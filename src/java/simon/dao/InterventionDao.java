@@ -12,7 +12,7 @@ import simon.entity.Speaker;
 public interface InterventionDao {
     
     Intervention findInterventionById(Long Id);
-    List<Campus> findInterventionByCampus(Campus campus);
+    List<Intervention> findInterventionByCampus(Campus campus);
     List<Intervention> findInterventionBySpeaker(Speaker speaker);
     
     Intervention addIntervention(Intervention intervention);

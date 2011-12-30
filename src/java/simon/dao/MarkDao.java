@@ -4,12 +4,13 @@
  */
 package simon.dao;
 
+import simon.entity.Intervention;
 import simon.entity.Mark;
 
 public interface MarkDao {
-    Float getGlobalMark(Long id);
-    Integer getCount(Long id);
-    Float getSpeakerMark(Long id);
-    Float getSlideMark(Long id);
+    Float getGlobalMark(Intervention intervention);
+    Integer getCount(Intervention intervention);
+    Float getSpeakerMark(Intervention intervention);
+    Float getSlideMark(Intervention intervention);
     Mark addMark(Mark mark);
 }

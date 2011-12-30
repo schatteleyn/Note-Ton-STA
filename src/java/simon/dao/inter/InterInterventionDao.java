@@ -37,12 +37,12 @@ public class InterInterventionDao implements InterventionDao {
     }
     
     @Override
-    public List<Campus> findInterventionByCampus(Campus campus) {
+    public List<Intervention> findInterventionByCampus(Campus campus) {
             EntityManager em = emf.createEntityManager();
             try { 
                     Query query = em.createQuery("SELECT i FROM Intervention i WHERE campus = :campus");
                     query.setParameter("campus", campus);
-                    List<Campus> intervention = query.getResultList();
+                    List<Intervention> intervention = query.getResultList();
                     return intervention;
             } catch (NoResultException e) {
                     return null;
