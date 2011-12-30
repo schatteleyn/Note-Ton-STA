@@ -33,18 +33,6 @@ public class Mark implements Serializable {
     
     public Mark() {
     }
-    
-    public Mark(Integer idBooster, String comments, Integer mark1, Integer mark2, Integer mark3, Integer mark4, Integer mark5, Integer mark6, Intervention intervention){
-        this.idBooster = idBooster;
-        this.comments = comments;
-        this.mark1 = mark1;
-        this.mark2 = mark2;
-        this.mark3 = mark3;
-        this.mark4 = mark4;
-        this.mark5 = mark5;
-        this.mark6 = mark6;
-        this.intervention = intervention;
-    }
 
     public Intervention getIntervention() {
         return intervention;

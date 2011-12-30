@@ -1,7 +1,7 @@
 <jsp:include page="header.jps"/>
 
 <body>
-	<form method="POST" action="signup"> <!-- exécute servlet signup -->
+	<form method="POST" action="signup">
 		Nom: <input type="text" name="nom" />
 		Prénom: <input type="text" name="prenom" />
 		Email: <input type="text" name="email" />

@@ -47,15 +47,6 @@ public class Intervention implements Serializable {
     public Intervention() {
     }
     
-    public Intervention(String subject, Campus campus, Date beginning, Date ending, String description, Speaker speaker){
-        this.subject = subject;
-        this.campus = campus;
-        this.beginning = beginning;
-        this.ending = ending;
-        this.description = description;
-        this.speaker = speaker;
-    }
-    
     public Date getBeginning() {
         return beginning;
     }

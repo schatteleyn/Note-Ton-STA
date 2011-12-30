@@ -1,21 +1,22 @@
 <%@page import="simon.entity.Intervention"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="header.jps"/>
 
 <body>
     
-    <h2><%= intervention.getSubject() %></h2>
+    <h2><c:out value="${ intervention.getSubject}" /></h2>
     
-    <p>From <%= intervention.getBeginning() %> to <%= intervention.getEnding() %> <br />
-    Campus: <%= intervention.getCampus() %></p>
+    <p>From <c:out value="${ intervention.getBeginning}" /> to <c:out value="${ intervention.getEnding }"/> <br />
+    Campus: <c:out value="${ intervention.getCampus}" /></p>
     
-    <p><%= intervention.getDescription() %></p>
+    <p><c:out value="${ intervention.getDescription}" /></p>
     
     <p>
         <ul>
-            <li>Number of marks: </li>
-            <li>Speaker mark: </li>
-            <li>Slides mark: </li>
-            <li>Global event mark: </li>
+            <li>Number of marks: <c:out value="${ DaoFactory.getDaoFactory().getMarkDao().getCount(intervention.id) }" /></li>
+            <li>Speaker mark: <c:out value="${ DaoFactory.getDaoFactory().getMarkDao().getSpeakerMark(intervention.id) }" /></li>
+            <li>Slides mark: <c:out value="${ DaoFactory.getDaoFactory().getMarkDao().getSlideMark(intervention.id) }" /></li>
+            <li>Global event mark: <c:out value="${ DaoFactory.getDaoFactory().getMarkDao().getGlobalMark(intervention.id) }" /></li>
         </ul>
     </p>
     <script type="text/javascript">
@@ -58,9 +59,9 @@
                     ]
                 }]
             });
-            $('#my-modal').modal({ backdrop: true });
+            $('#modal-from-dom').modal({ backdrop: true });
             $('#evaluate').click(function(){
-                $('#my-modal').modal('toggle');
+                $('#modal-from-dom').modal('toggle');
                 return false;
             });
         });
@@ -69,7 +70,7 @@
     <div id="chart_container"></div>
 <script type="text/javascript">
     $(function(){
-        $('#my-modal').modal({ backdrop: true });
+        $('#modal-from-dom').modal({ backdrop: true });
         $('#evaluate').click(function(){
             $('#my-modal').modal('toggle');
             return false;
@@ -161,7 +162,7 @@
                 </div>
         </div>
         
-        <a href="#" data-controls-modal="modal-from-dom" data-backdrop="true" data-keyboard="true">Evaluate</a>
+        <a id="evaluate" href="${pageContext.servletContext.contextPath}/viewIntervention?i=${intervention.id}">Evaluate</a>
         
     </body>
 </html>

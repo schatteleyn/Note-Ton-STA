@@ -5,6 +5,7 @@
 package simon.servlet;
 
 import java.io.IOException;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,19 +22,25 @@ public class InterventionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String sujet = (String) req.getParameter("sujet");
         String campus = (String) req.getParameter("campus");
-        String from = (String) req.getParameter("from");
-        String to = (String) req.getParameter("to");
+        Date from = Date.valueOf(req.getParameter("from"));
+        Date to = Date.valueOf(req.getParameter("to"));
         String description = (String) req.getParameter("description");
-        Speaker speaker = (Speaker) req.getSession().getAttribute("email");
+        Speaker speaker = (Speaker) req.getSession().getAttribute("speaker");
         
-        if (sujet.isEmpty() || campus.isEmpty() || from.isEmpty() || to.isEmpty() || description.isEmpty()) {
+        if (sujet.isEmpty() || campus.isEmpty() || description.isEmpty()) {
             req.setAttribute("erreur", "Vous devez remplir tous les champs.");
             getServletContext().getRequestDispatcher("intervention/new").forward(req, resp);
         }
         
         else {        
-            Intervention intervention = new Intervention(sujet, campus, from, to, description, speaker);
-            Intervention addIntervention = (Intervention) DaoFactory.getDaoFactory().getInterventionDao().addIntervention(intervention);
+            Intervention intervention = new Intervention();
+            intervention.setSubject(sujet);
+            //intervention.setCampus(campus);
+            intervention.setBeginning(from);
+            intervention.setEnding(to);
+            intervention.setDescription(description);
+            intervention.setSpeaker(speaker);
+            Intervention addIntervention = DaoFactory.getDaoFactory().getInterventionDao().addIntervention(intervention);
             //getServletContext().getRequestDispatcher("intervention/" + id).forward(req, resp);
         }
         

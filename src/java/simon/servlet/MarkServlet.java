@@ -33,7 +33,7 @@ public class MarkServlet extends HttpServlet {
         Integer mark4 = Integer.valueOf(req.getParameter("mark4"));
         Integer mark5 = Integer.valueOf(req.getParameter("mark5"));
         Integer mark6 = Integer.valueOf(req.getParameter("mark6"));
-        String intervention = (String) req.getParameter("intervention");  //Should be Intervention
+        String intervention = (String) req.getSession().getAttribute("intervention");  //Should be Intervention
 
             req.setAttribute("idBooster", idBooster);
             req.setAttribute("comments", comments);
@@ -43,7 +43,17 @@ public class MarkServlet extends HttpServlet {
             req.setAttribute("mark4", mark4);
             req.setAttribute("mark5", mark5);
             req.setAttribute("mark6", mark6);
-            Mark mark = new Mark(idBooster, comments, mark1, mark2, mark3, mark4, mark5, mark6, intervention);
+            
+            Mark mark = new Mark();
+            mark.setIdBooster(idBooster);
+            mark.setComments(comments);
+            mark.setMark1(mark1);
+            mark.setMark2(mark2);
+            mark.setMark3(mark3);
+            mark.setMark4(mark4);
+            mark.setMark5(mark5);
+            mark.setMark6(mark6);
+            
             Mark addMark = DaoFactory.getDaoFactory().getMarkDao().addMark(mark);
     }
 }

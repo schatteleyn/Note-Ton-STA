@@ -5,12 +5,15 @@
 package simon.dao.inter;
 
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import simon.dao.InterventionDao;
+import simon.entity.Campus;
 import simon.entity.Intervention;
+import simon.entity.Speaker;
 
 public class InterInterventionDao implements InterventionDao {
     private EntityManagerFactory emf;
@@ -34,12 +37,13 @@ public class InterInterventionDao implements InterventionDao {
     }
     
     @Override
-    public Intervention findInterventionByCampus(Long id) {
+    public List<Campus> findInterventionByCampus(Campus campus) {
             EntityManager em = emf.createEntityManager();
             try { 
-                    Query query = em.createQuery("SELECT i FROM Intervention i LEFT JOIN FETCH i.campus WHERE i.id = :id");
-                    query.setParameter("id", id);
-                    return (Intervention) query.getSingleResult();
+                    Query query = em.createQuery("SELECT i FROM Intervention i WHERE campus = :campus");
+                    query.setParameter("campus", campus);
+                    List<Campus> intervention = query.getResultList();
+                    return intervention;
             } catch (NoResultException e) {
                     return null;
             } finally { 
@@ -48,12 +52,13 @@ public class InterInterventionDao implements InterventionDao {
     }
     
     @Override
-    public Intervention findInterventionBySpeaker(Long id) {
+    public List<Intervention> findInterventionBySpeaker(Speaker speaker) {
             EntityManager em = emf.createEntityManager();
             try { 
-                    Query query = em.createQuery("SELECT i FROM Intervention i LEFT JOIN FETCH i.speaker WHERE i.id = :id");
-                    query.setParameter("id", id);
-                    return (Intervention) query.getSingleResult();
+                    Query query = em.createQuery("SELECT i FROM Intervention i WHERE speaker = :speaker");
+                    query.setParameter("speaker", speaker);
+                    List<Intervention> intervention = query.getResultList();
+                    return intervention;
             } catch (NoResultException e) {
                     return null;
             } finally { 
