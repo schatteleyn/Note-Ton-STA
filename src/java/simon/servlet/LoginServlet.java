@@ -27,20 +27,14 @@ public class LoginServlet extends HttpServlet {
         String email = (String) req.getParameter("email");
         String password = (String) req.getParameter("password");
         
-        if (email.isEmpty() || password.isEmpty()) {
-            req.setAttribute("erreur", "Vous devez remplir les deux champs.");
-            getServletContext().getRequestDispatcher("login.jsp").forward(req, resp);
-        }
- 
-            
-        else {
-            req.setAttribute("email", email);
-            req.setAttribute("password", password);
-            Speaker speakerLogin = DaoFactory.getDaoFactory().getSpeakerDao().login(email, password);
-            if(speakerLogin != null) {
-                HttpSession session = req.getSession();
-                session.setAttribute("speaker", speakerLogin);
-            }
+        req.setAttribute("email", email);
+        req.setAttribute("password", password);
+        Speaker speakerLogin = DaoFactory.getDaoFactory().getSpeakerDao().login(email, password);
+        
+        if(speakerLogin != null) {
+            HttpSession session = req.getSession();
+            session.setAttribute("userId", speakerLogin.getId());
+            session.setAttribute("speaker", speakerLogin);
         }
     }
 

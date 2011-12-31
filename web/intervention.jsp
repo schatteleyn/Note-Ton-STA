@@ -1,5 +1,4 @@
 <jsp:include page="header.jps"/>
-<body>
 	<table>
 		<tr>
                     <th>Subject: </th>
@@ -8,7 +7,22 @@
                     <th>Status: </th>
                 </tr>
 		<c:forEach items="${interventions}" var="intervention">
-			<tr><td><a href="intervention/detail?intervention=${intervention.id }">${intervention.subject}</a></td><td>${intervention.beginning}</td><td>${intervention.ending}</td><td>${intervention.status} </td></tr>
+			<tr>
+                            <td><a href="intervention/detail?intervention=${intervention.id }">${intervention.subject}</a></td>
+                            <td><fmt:formatDate value="${intervention.beginning}" pattern="dd MMMM YYYY"></td>
+                            <td><fmt:formatDate value="${intervention.ending}" pattern="dd MMMM YYYY"></td>
+                            <c:choose>
+                                    <c:when test="${ intervention.from > now }">
+                                            Attended
+                                    </c:when>
+                                    <c:when test="${ intervention.to < now }">
+                                            Done
+                                    </c:when>
+                                    <c:otherwise>
+                                            In progress
+                                    </c:otherwise>
+                            </c:choose>
+                        </tr>
 		</c:forEach>
 	</table>
 </body>

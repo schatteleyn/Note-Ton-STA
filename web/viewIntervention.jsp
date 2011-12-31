@@ -1,20 +1,18 @@
 <jsp:include page="header.jps"/>
-<%@page import="simon.entity.Intervention"%>
-<body>
     <div>  
-    <h2><c:out value="${ intervention.subject}" /></h2>
+    <h2><c:out value="${ subject}" /></h2>
     
-    <p>From <c:out value="${ intervention.beginning}" /> to <c:out value="${ intervention.ending }"/> <br />
-    Campus: <c:out value="${ intervention.campus}" /></p>
+    <p>From <c:out value="${ beginning}" /> to <c:out value="${ ending }"/> <br />
+    Campus: <c:out value="${ campus}" /></p>
     
-    <p><c:out value="${ intervention.description}" /></p>
+    <p><c:out value="${ description}" /></p>
     
     <p>
         <ul>
-            <li>Number of marks: <c:out value="${ intervention.totalMarks }" /></li>
-            <li>Speaker mark: <c:out value="${ intervention.speakerMarks }" /></li>
-            <li>Slides mark: <c:out value="${ intervention.slideMarks }" /></li>
-            <li>Global event mark: <c:out value="${ intervention.globalMarks }" /></li>
+            <li>Number of marks: <c:out value="${ totalMarks }" /></li>
+            <li>Speaker mark: <c:out value="${ speakerMarks }" /></li>
+            <li>Slides mark: <c:out value="${ slideMarks }" /></li>
+            <li>Global event mark: <c:out value="${ globalMarks }" /></li>
         </ul>
     </p>
     </div>
@@ -55,7 +53,7 @@
                     type: 'pie',
                     name: 'Grades',
                     data: [
-                        ${intervention.chartData}
+                        ${intervention.StringChart}
                     ]
                 }]
             });

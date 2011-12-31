@@ -12,4 +12,5 @@ public interface SpeakerDao {
     Speaker addSpeaker(Speaker speaker);
     Speaker login(String email, String password);
     Speaker findSpeakerByEmail(String email);
+    Speaker findSpeakerById(Long id);
 }

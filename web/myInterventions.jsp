@@ -1,5 +1,4 @@
 <jsp:include page="header.jps"/>
-<body>
 	<table>
 		<tr>
 			<th>Subject: </th>

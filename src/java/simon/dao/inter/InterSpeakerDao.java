@@ -56,13 +56,14 @@ public class InterSpeakerDao implements SpeakerDao {
             EntityManager em = emf.createEntityManager();
             try {
                 Speaker speaker = findSpeakerByEmail(email);
-                //if(speaker != null && speaker.getEncryptedPassword().equals(encryptPassword(password))) {
-                if(speaker != null && speaker.getPassword().equals(password)) {
+                if(speaker!=null && speaker.getPassword().equals(encryptPassword(password))) {
                         result = speaker;
                 }
-            } catch (NoResultException e) { 
-
-            } finally {
+            }
+            catch (NoResultException e) { 
+                return null;
+            } 
+            finally {
                     em.close();
             }
 
@@ -84,6 +85,20 @@ public class InterSpeakerDao implements SpeakerDao {
                 em.close();
         }
 
+        return result;
+    }
+    
+    @Override
+    public Speaker findSpeakerById(Long id){
+        Speaker result;
+        EntityManager em = emf.createEntityManager();
+		try { 
+			result = em.find(Speaker.class, id);
+		} catch (NoResultException e) {
+			result = null;
+		} finally {
+			em.close(); 
+		}
         return result;
     }
 

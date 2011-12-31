@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import simon.dao.DaoFactory;
+import simon.entity.Campus;
 import simon.entity.Intervention;
 import simon.entity.Speaker;
 
@@ -20,28 +21,38 @@ public class NewInterventionServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String sujet = (String) req.getParameter("sujet");
-        String campus = (String) req.getParameter("campus");
+        
+        String subject = req.getParameter("sujet");
+        Long campus = Long.valueOf(req.getParameter("campus"));
         Date from = Date.valueOf(req.getParameter("from"));
         Date to = Date.valueOf(req.getParameter("to"));
-        String description = (String) req.getParameter("description");
-        Speaker speaker = (Speaker) req.getSession().getAttribute("speaker");
+        String description = req.getParameter("description");
         
-        if (sujet.isEmpty() || campus.isEmpty() || description.isEmpty()) {
-            req.setAttribute("erreur", "Vous devez remplir tous les champs.");
-            getServletContext().getRequestDispatcher("intervention/new").forward(req, resp);
-        }
+        Boolean validate = true;
+        
+        if(subject.isEmpty()){
+            validate = false;
+            req.setAttribute("error_subject", "Subject is required !");
+	}
+        
+        else if(description.isEmpty()){
+            validate = false;
+            req.setAttribute("error_description", "Description is required !");
+	}
         
         else {        
             Intervention intervention = new Intervention();
-            intervention.setSubject(sujet);
-            //intervention.setCampus(campus);
+            intervention.setSubject(subject);
+            Campus theCampus = DaoFactory.getDaoFactory().getCampusDao().findCampusById(campus);
+            intervention.setCampus(theCampus);
             intervention.setBeginning(from);
             intervention.setEnding(to);
             intervention.setDescription(description);
-            intervention.setSpeaker(speaker);
-            Intervention addIntervention = DaoFactory.getDaoFactory().getInterventionDao().addIntervention(intervention);
-            //getServletContext().getRequestDispatcher("intervention/" + id).forward(req, resp);
+            Speaker theSpeaker = DaoFactory.getDaoFactory().getSpeakerDao().findSpeakerById((Long) req.getSession().getAttribute("userId"));
+	    intervention.setSpeaker(theSpeaker);
+            
+            DaoFactory.getDaoFactory().getInterventionDao().addIntervention(intervention);
+            resp.sendRedirect("/myInterventions.jsp");
         }
         
     }

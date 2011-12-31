@@ -2,8 +2,6 @@
 <%@page import="java.util.List"%>
 <jsp:include page="header.jps"/>
     
-<body>
-    
     <% List<Campus> listCampus = (List<Campus>) request.getAttribute("list_campus"); %>
 	<h2>Bienvenue sur Note Ton STA</h2>
 		<p>Ce site te permet de noter ton STA, ou bien de voir les statistiques par intervenants et campus.</p>
